@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Desculpas para Isabella</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #mensagem {
+            margin-top: 20px;
+        }
+        /* Esconde o controle de áudio */
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pedido de Desculpas</h1>
+        <button onclick="gerarMensagem()">Gerar Mensagem para Isabella</button>
+        <div id="mensagem"></div>
+    </div>
+
+    <!-- Adiciona a tag de áudio -->
+    <audio id="musicaFundo" autoplay loop>
+        <source src="musica-fundo.mp3" type="audio/mpeg">
+        Seu navegador não suporta a tag de áudio.
+    </audio>
+
+    <script>
+        function gerarMensagem() {
+            const nome = 'Isabella'; // Nome da pessoa para quem você está pedindo desculpas
+            const seuNome = 'Merlin'; // Seu próprio nome
+            const mensagem = `Olá ${nome},\n\nGostaria de pedir desculpas sinceramente pelo ocorrido. Sei que isso causou um transtorno e lamento muito por isso.\nPor favor, aceite minhas desculpas e espero que possamos resolver qualquer mal-entendido.\n\nAtenciosamente,\n${seuNome}`;
+            const mensagemContainer = document.getElementById('mensagem');
+            mensagemContainer.innerHTML = `<pre>${mensagem}</pre><button onclick="baixarArquivo()">Baixar Mensagem</button>`;
+        }
+
+        function baixarArquivo() {
+            const nome = 'Isabella'; // Nome da pessoa para quem você está pedindo desculpas
+            const seuNome = 'Merlin'; // Seu próprio nome
+            const mensagem = `Olá ${nome},\n\nGostaria de pedir desculpas sinceramente pelo ocorrido. Sei que isso causou um transtorno e lamento muito por isso.\nPor favor, aceite minhas desculpas e espero que possamos resolver qualquer mal-entendido.\n\nAtenciosamente,\n${seuNome}`;
+            const blob = new Blob([mensagem], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pedido_de_desculpas_para_isabella.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
